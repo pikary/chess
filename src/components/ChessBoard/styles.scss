@@ -1,0 +1,8 @@
+.board{
+    width: fit-content;
+    height: fit-content;
+    margin: 25px auto;
+    &__row{
+        display: flex;
+    }
+}
