@@ -1,16 +1,19 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import classNames from "classnames";
 import {Cell} from "../../models/Cell";
 import { COLORS } from "../../models/Colors";
 import './styles.scss'
 
 interface CellProps {
-    cell: Cell
+    cell: Cell,
+    children:ReactNode
 }
 
-const CellComponent: React.FC<CellProps> = ({ cell }) => {
+const CellComponent: React.FC<CellProps> = ({ cell,children }) => {
     return (
-        <div className={`${classNames('cell', cell.color === COLORS.WHITE ? 'white' : 'black')}`}></div>
+        <div className={`${classNames('cell', cell.color === COLORS.WHITE ? 'white' : 'black')}`}>
+            {children}
+        </div>
     )
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {Board} from "../../models/Board";
+import { Board } from "../../models/Board";
 import CellComponent from "../Cell";
 import './styles.scss'
 interface BoardProps {
@@ -14,7 +14,9 @@ const ChessBoard: React.FC<BoardProps> = ({ board, setBoard }) => {
                     {
                         row.map((cell, index) => (
                             <React.Fragment key={index}>
-                                <CellComponent cell={cell} ></CellComponent>
+                                <CellComponent cell={cell}>
+                                    {cell.figure && <img src={cell.figure?.pic} alt={cell.figure.name}></img>}
+                                </CellComponent>
                             </React.Fragment>
                         ))
                     }

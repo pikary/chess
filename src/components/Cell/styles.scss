@@ -1,7 +1,13 @@
 .cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
     height: 100px;
-
+    img{
+        width: 64px;
+        height: 64px;
+    }
     &.black{
         background-color: var(--cell-black);
     }
