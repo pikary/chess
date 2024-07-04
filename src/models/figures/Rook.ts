@@ -10,4 +10,18 @@ export class Rook extends Figure{
         this.pic = color === COLORS.WHITE ? RookWhite : RookBlack
         this.name = FigureNames.ROOK
     }
+
+    canMove(targetCell: Cell): boolean {
+        if(super.canMove(targetCell)===false){
+            return false
+        }
+        if(this.cell.isEmptyVertical(targetCell)){
+            return true
+        }
+        if(this.cell.isEmptyHorizontal(targetCell)){
+            return true
+        }
+    
+        return false
+    }
 }

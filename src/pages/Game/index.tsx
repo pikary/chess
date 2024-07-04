@@ -12,10 +12,13 @@ export default function Game() {
         }
         drawBoard()
     }, [])
+    const updateBoard = (newBoard:Board) =>{
+        setBoard(newBoard)
+    }
     return (
         <div>
             {board &&
-                <ChessBoard board={board} setBoard={()=>{}}></ChessBoard>
+                <ChessBoard board={board} setBoard={updateBoard}></ChessBoard>
             }
         </div>
     )

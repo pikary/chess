@@ -28,8 +28,18 @@ export class Figure{
         this.id = Math.random()
     }
 
+   
+
     canMove(targetCell:Cell){
-        return false
+        // if(targetCell.figure?.color == this.color){
+        //     //огонь по своим
+        
+        //     return false
+        // }
+        return true
+    }
+    moveFigure(target:Cell){
+        this.cell = target
     }
     
 }
