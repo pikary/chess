@@ -74,7 +74,7 @@ export class Cell {
 
 
     moveFigure(target: Cell) {
-        if (this.figure?.canMove(target)) {
+        if (this.figure?.canMove(target) && this.figure.color !== target.figure?.color) {
             const tempFigure = this.figure
             target.figure = tempFigure
             this.figure.moveFigure(target)
@@ -92,7 +92,7 @@ export class Cell {
                 if (currentCell.figure && currentCell.figure.color !== color) {
                     //if figure is pawn check a little bit different
                     if(currentCell.figure instanceof Pawn){
-                        if(currentCell.figure.isAttackingKing(targetCell)){
+                        if(currentCell.figure.isAttackingCell(targetCell)){
                             return true
                         }
                     } else{

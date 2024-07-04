@@ -50,16 +50,25 @@ export class Pawn extends Figure {
 
 
     //here targetCell is a cell where king stands
-    isAttackingKing(targetCell: Cell) {
+    isAttackingCell(targetCell: Cell) {
         const DIRECTION = this.color === COLORS.WHITE ? -1 : 1; // Direction is reversed for white
         const START_ROW = this.color === COLORS.WHITE ? 6 : 1;
 
         const dRow = targetCell.row - this.cell.row;
         const dCol = Math.abs(this.cell.col - targetCell.col);
 
-        // Capture move (diagonal)
+
+
+        // check if cell can potentially be captured
         if (dRow === DIRECTION && dCol === 1 && targetCell.figure?.color !== this.color) {
             return true;
+        }
+        //capture move (if this pawn is defending other figure)
+        // check if there is a figure of its own team
+        if(targetCell.figure?.color === this.color){
+            if(dRow === DIRECTION && dCol === 1 ){
+                return true
+            }
         }
         return false
     }

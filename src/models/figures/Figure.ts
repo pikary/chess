@@ -1,6 +1,7 @@
 import {Cell} from "../Cell";
 import pic from '../../assets/black-bishop.png'
 import { COLORS } from "../Colors";
+import { King } from "./King";
 
 export enum FigureNames{
     FIGURE='FIGURE',
@@ -33,11 +34,23 @@ export class Figure{
     canMove(targetCell:Cell){
         // if(targetCell.figure?.color == this.color){
         //     //огонь по своим
-        
         //     return false
         // }
+        if(targetCell.figure?.name == FigureNames.KING){
+            return false
+        }
         return true
     }
+    
+    canEat(targetCell:Cell){
+        
+    }
+
+    //for king -- check if this figure defends targetCell figure which king wants to eat
+    isDefending(targetCell:Cell){
+        
+    }
+
     moveFigure(target:Cell){
         this.cell = target
     }
