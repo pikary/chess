@@ -1,0 +1,50 @@
+.input-cont {
+    position: relative;
+    gap: 20px;
+    height: fit-content;
+    font-size: var(--font-size-m);
+
+    &__label {
+        display: block;
+        padding-bottom: 10px;
+        font-size: inherit;
+        color: var(--text-hover-color);
+        &:focus{
+            color: var(--text-hover-color);
+        }
+    }
+
+    &__input {
+        width: 100%;
+        color: white;
+        height: 50px;
+        padding: 10px;
+        font-size: var(--font-size-m);
+        border-radius: 5px;
+        border: none;
+        outline: solid 2px gray;
+        background: transparent;
+
+
+        &:active {
+            outline-color: var(--text-hover-color);
+        }
+        &:focus {
+            outline-color: var(--text-hover-color);
+            & + .input-cont__label{
+                color:white
+            }
+        }
+     
+    }
+
+    &__error {
+        position: absolute;
+        bottom: -25px;
+        color: red;
+        font-size: var(--font-size-m);
+        padding: 0;
+        margin: 0;
+    }
+
+}

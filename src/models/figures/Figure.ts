@@ -37,7 +37,7 @@ export class Figure{
         //     return false
         // }
         if(targetCell.figure?.name == FigureNames.KING){
-            return false
+            return false    
         }
         return true
     }

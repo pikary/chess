@@ -1,0 +1,82 @@
+.profile {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    gap: 10px;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    h4 {
+        font-size: var(--font-size-m);
+        color: inherit;
+    }
+
+    svg {
+        color: inherit;
+    }
+
+    &:hover {
+        color: var(--text-hover-color);
+    }
+
+    &.active {
+        color: var(--text-hover-color);
+        background-color: hsl(37, 7%, 22%);
+        svg {
+            color: var(--text-hover-color)
+        }
+    }
+
+
+    $menupadding: 15px;
+
+    &__menu {
+        display: block;
+        width: 300px;
+        top: 50px;
+        right: 0;
+        position: absolute;
+        background-color: hsl(37, 7%, 22%);
+        color: var(--text-color);
+
+        &__list {
+
+            li {
+                display: flex;
+                padding: 10px 15px;
+                align-items: center;
+                gap: 15px;
+                font-size: var(--font-size-m);
+                cursor: pointer;
+                &:hover {
+                    background-color: var(--hover-color);
+                    color: white;
+                    svg{
+                        color: white;
+                    }
+                }
+
+                svg {
+                    color: inherit;
+                }
+
+                a {
+                    display: block;
+                    color: inherit;
+                }
+
+                &.fatal{
+                    &:hover{
+                        background-color: red;
+
+                    }
+                }
+            }
+
+            
+        }
+
+    }
+
+}

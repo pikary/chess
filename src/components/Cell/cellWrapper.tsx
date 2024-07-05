@@ -8,8 +8,6 @@ const CellWrapper: FC = () => {
             <div className="cell__triangle cell__triangle-top-right"></div>
             <div className="cell__triangle cell__triangle-bottom-left"></div>
             <div className="cell__triangle cell__triangle-bottom-right"></div>
-
-
         </Fragment>
     )
 }
