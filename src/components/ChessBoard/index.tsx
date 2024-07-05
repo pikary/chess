@@ -39,7 +39,7 @@ const ChessBoard: React.FC<BoardProps> = ({ board, setBoard }) => {
     return (
         <div className="board">
             {board.cells.map((row, ind) => (
-                <div className="board__row">
+                <div className="board__row" key={ind}>
                     {
                         row.map((cell, index) => (
                             <React.Fragment key={index}>

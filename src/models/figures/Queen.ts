@@ -11,7 +11,7 @@ export class Queen extends Figure{
         this.name = FigureNames.QUEEN
     }
 
-    
+
     canMove(targetCell: Cell): boolean {
         if(super.canMove(targetCell)===false){
             // console.log('cant');
