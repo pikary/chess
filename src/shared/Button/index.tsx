@@ -14,7 +14,6 @@ const Button:FC<ButtonProps> = (props) =>{
         type={type}
         onClick={onClick}
         className={classNames('button',className)}
-        disabled={disabled}
 		>
         {children}
     </button>

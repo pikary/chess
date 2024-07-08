@@ -17,26 +17,21 @@ const baseRequest = async <ReturnType>(
 			body: body ? JSON.stringify(body) : null,
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: localStorage.getItem('access_token') || '',
+				Authorization: `Bearer ${localStorage.getItem('access_token') || ''}` ,
 				...config.headers,
 			},
 			...config,
 		});
 		const result = await req.json();
+		console.log(result);
 
 		if (!req.ok) {
-			throw new Error(
-				result.message + req.status || 'Request Failed ' + req.status
-			);
+			throw result.message
 		}
 		return result as ReturnType;
-	} catch (e) {
-		// Handle the error appropriately
-		// For example, you can log it or throw a custom error
-		console.error('Error in baseRequest:', e);
-		throw new Error(
-			'Something went wrong, please review your server connection'
-		);
+	} catch (e: any) {
+
+		throw new Error(e)
 	}
 };
 

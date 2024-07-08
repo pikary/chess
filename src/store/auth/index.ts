@@ -20,10 +20,16 @@ const UserSlice = createSlice({
             state.isLoading = true
         })
         builder.addCase(registerApiCall.fulfilled, (state, action) => {
+            console.log(action.payload);
+
             state.isLoading = false
             state.data = action.payload
+            
+            localStorage.setItem('access_token', action.payload?.access_token || '')
         })
         builder.addCase(registerApiCall.rejected, (state, action) => {
+            console.log(action.payload);
+            
             state.isLoading = false
             state.error = action.payload
         })
@@ -31,8 +37,11 @@ const UserSlice = createSlice({
             state.isLoading = true
         })
         builder.addCase(loginApiCall.fulfilled, (state, action) => {
+            console.log(action.payload);
             state.isLoading = false
             state.data = action.payload
+            localStorage.setItem('access_token', action.payload?.access_token || '')
+
         })
         builder.addCase(loginApiCall.rejected, (state, action) => {
             state.isLoading = false

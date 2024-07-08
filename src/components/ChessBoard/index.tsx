@@ -5,37 +5,36 @@ import './styles.scss'
 import { Cell } from "../../models/Cell";
 interface BoardProps {
     board: Board,
-    setBoard: (newBoard:Board) => void
+    setBoard: (newBoard: Board) => void
 }
 const ChessBoard: React.FC<BoardProps> = ({ board, setBoard }) => {
-    const [selectedCell, setSelectedCell] = useState<null|Cell>(null)
-    const onCellSelect = (target:Cell) =>{
+    const [selectedCell, setSelectedCell] = useState<null | Cell>(null)
+    const onCellSelect = (target: Cell) => {
 
         //if cell already selected -- move figure
-        if(selectedCell && selectedCell !== target && selectedCell.figure){
+        if (selectedCell && selectedCell !== target && selectedCell.figure) {
             // console.log('ayo');
             selectedCell.moveFigure(target)
             setSelectedCell(null)
-        }else{
+        } else {
             //else -- setSelecteFigure
             setSelectedCell(target)
             // console.log(target);
         }
-        
+
     }
 
-
     //update board when user selects cells
-    const updateBoard = ()=>{
+    const updateBoard = () => {
         const copiedBoard = board.getCopyBoard()
         setBoard(copiedBoard)
     }
-    useEffect(()=>{        
+    useEffect(() => {
         console.log(selectedCell);
-        
-            board.highlightCells(selectedCell)
+
+        board.highlightCells(selectedCell)
         updateBoard()
-    },[selectedCell])
+    }, [selectedCell])
     return (
         <div className="board">
             {board.cells.map((row, ind) => (
@@ -43,9 +42,11 @@ const ChessBoard: React.FC<BoardProps> = ({ board, setBoard }) => {
                     {
                         row.map((cell, index) => (
                             <React.Fragment key={index}>
-                                <CellComponent selectedCell={selectedCell} onCellSelect={()=>{onCellSelect(cell)}} cell={cell}>
-                                    
-                                    {cell.figure && <img src={cell.figure?.pic} alt={cell.figure.name}></img>}
+                                <CellComponent selectedCell={selectedCell} onCellSelect={() => { onCellSelect(cell) }} cell={cell}>
+
+                                    {cell.figure && (
+                                    <img src={cell.figure?.pic} alt={cell.figure.name}></img>
+)}
                                 </CellComponent>
                             </React.Fragment>
                         ))
