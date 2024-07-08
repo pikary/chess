@@ -1,10 +1,23 @@
 import React, { FC } from "react";
 import * as yup from 'yup';
 import { Formik, Form } from 'formik';
+import { unwrapResult } from "@reduxjs/toolkit";
+import { useAppDispatch, useTypedSelector } from "../../store";
 import Input from "../../shared/Input";
 import Button from "../../shared/Button";
 import './styles.scss'
+import { loginApiCall } from "../../store/auth/api";
+import { useNavigate } from "react-router-dom";
+
+interface SignInFormValues{
+    username:string,
+    password:string
+}
+
 const SignIn: FC = () => {
+    const navigate = useNavigate()
+    const {isLoading} = useTypedSelector((state)=>state.auth)
+    const dispatch = useAppDispatch()
     const initialValues = {
         username: '',
         password: ''
@@ -13,11 +26,23 @@ const SignIn: FC = () => {
         username: yup.string().required('This field is required'),
         password: yup.string().required('This field is required')
     });
+
+    const onSubmit = async(e: SignInFormValues) => {
+        const data = {
+            username:e.username,
+            password:e.password
+        }
+        const result = await dispatch(loginApiCall(data))
+        const unwrappedReulst = await unwrapResult(result)
+        if(unwrappedReulst!==undefined){
+            navigate('/game')
+        }
+    }
     return (
         <div className="sign-in">
             <div className="sign-in__form-cont">
                 <Formik
-                    onSubmit={() => { }}
+                    onSubmit={onSubmit}
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     validateOnBlur={true}

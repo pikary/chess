@@ -46,7 +46,10 @@
             -webkit-transition: .4s;
             transition: .4s;
             cursor: pointer;
-
+        }
+        
+        &.error{
+            box-shadow:0 0 10px red;
         }
     }
 
