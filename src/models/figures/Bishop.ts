@@ -12,13 +12,23 @@ export class Bishop extends Figure {
     }
 
     canMove(targetCell: Cell): boolean {
+        const cell = document.getElementById(`${targetCell.row}-${targetCell.col}`)
+
         if (super.canMove(targetCell) === false) {
             return false
         }
         if (this.cell.isEmptyDiagonal(targetCell)) {
+            if (targetCell.figure == null) {
+                cell?.classList.add('cell-available')
+            }
+            if (targetCell.figure && targetCell.figure.color !== this.cell.figure?.color) {
+                cell?.classList.add('cell-canbeeaten')
+                targetCell.canBeEaten = true
+            }
             return true
         }
-
+        cell?.classList.remove('cell-available')
+        cell?.classList.remove('cell-canbeeaten')
         return false
     }
 }

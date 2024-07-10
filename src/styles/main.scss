@@ -67,3 +67,9 @@ body {
 ul{
   list-style-type: none;
 }
+
+.dragged-item {
+  opacity: 1 !important;
+  z-index: 1000; /* Ensure it is on top of other elements */
+  // pointer-events: none; /* Prevent any interaction with the dragged item */
+}

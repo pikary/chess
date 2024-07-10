@@ -12,6 +12,7 @@
         width: 0;
         height: 0;
         border-style: solid;
+
         &-top-left {
             top: 0;
             left: 0;
@@ -47,6 +48,8 @@
         width: 64px;
         height: 64px;
         user-select: none;
+        cursor: pointer;
+        z-index: 1000;
     }
 
     &.black {
@@ -57,15 +60,54 @@
         background-color: var(--cell-white);
     }
 
-    &-available {
-        width: 25px;
-        height: 25px;
-        background-color: var(--color-active);
-        border-radius: 50%;
+
+
+}
+
+.cell-selected {
+    background-color: var(--color-active) !important;
+    opacity: 0.9;
+}
+
+.cell-canbeeaten {
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        background: var(--color-active);
     }
 
-    &.selected {
-        background-color: var(--color-active);
-        opacity: 0.9;
+    &::before {
+        top: 0;
+        left: 0;
+        clip-path: polygon(0 0, 100% 0, 0 100%);
     }
+
+    &::after {
+        bottom: 0;
+        right: 0;
+        clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+}
+
+.cell-available {
+    position: relative;
+
+    
+}
+
+.cell-available::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: var(--color-active);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  
 }
