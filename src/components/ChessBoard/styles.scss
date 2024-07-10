@@ -1,9 +1,19 @@
-.board{
+.board {
     position: relative;
     width: fit-content;
     height: fit-content;
     margin: 25px auto;
-    &__row{
+    overflow: hidden;
+    &__row {
         display: flex;
     }
+}
+
+.figure {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    user-select: none;
+    transition: top 0.3s ease, left 0.3s ease;
+
 }

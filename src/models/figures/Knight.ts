@@ -15,6 +15,10 @@ export class Knight extends Figure {
         if (!super.canMove(targetCell)) {
             return false
         }
+        if (targetCell.figure && targetCell.figure.color !== this.cell.figure?.color) {
+            targetCell.canBeEaten = true
+            
+        }
         const dRow = Math.abs(this.cell.row - targetCell.row)
         const dCol = Math.abs(this.cell.col - targetCell.col)
         return (dRow === 1 && dCol === 2) || (dRow === 2 && dCol === 1)

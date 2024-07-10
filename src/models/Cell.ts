@@ -12,7 +12,6 @@ export class Cell {
     board: Board
     canBeEaten: boolean = false
 
-
     constructor(row: number, col: number, color: COLORS, board: Board) {
         this.row = row
         this.col = col
@@ -71,32 +70,33 @@ export class Cell {
         return true
     }
 
-
-
     moveFigure(target: Cell) {
+
         if (this.figure?.canMove(target) && this.figure.color !== target.figure?.color) {
             const tempFigure = this.figure
             target.figure = tempFigure
             this.figure.moveFigure(target)
             this.figure = null
-
+        } else {
+            throw new Error('Cant move here')
         }
+
     }
 
     //domainCell -- клетки на которые потенциально пойти король
-    isCellUnderAttack(targetCell: Cell, color:COLORS) {
+    isCellUnderAttack(targetCell: Cell, color: COLORS) {
         const allCells = this.board.cells
         for (let row = 0; row < allCells.length; row++) {
             for (let col = 0; col < allCells[row].length; col++) {
-                const currentCell = this.board.getCell(row,col)
+                const currentCell = this.board.getCell(row, col)
                 if (currentCell.figure && currentCell.figure.color !== color) {
                     //if figure is pawn check a little bit different
-                    if(currentCell.figure instanceof Pawn){
-                        if(currentCell.figure.isAttackingCell(targetCell)){
+                    if (currentCell.figure instanceof Pawn) {
+                        if (currentCell.figure.isAttackingCell(targetCell)) {
                             return true
                         }
-                    } else{
-                        if(currentCell.figure.canMove(targetCell)){
+                    } else {
+                        if (currentCell.figure.canMove(targetCell)) {
                             return true
                         }
                     }

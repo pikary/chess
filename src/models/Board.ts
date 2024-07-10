@@ -26,7 +26,6 @@ export class Board {
         return this.cells[row][col]
     }
 
-
     public getCopyBoard() {
         const newBoard = new Board()
         newBoard.cells = this.cells
@@ -38,8 +37,42 @@ export class Board {
             const row = this.cells[i]
             for (let j = 0; j < row.length; j++) {
                 const target = row[j]
-                target.isAvailable = !!selectedCell?.figure?.canMove(target)
+                const canMove = !!selectedCell?.figure?.canMove(target)
+                if (canMove ) {
+                    this.highlightAvailableCell(selectedCell!,target)
+                }
+                 
+                // target.isAvailable = !!selectedCell?.figure?.canMove(target)
             }
+        }
+    }
+    
+    public highlightDomailCell(domain:Cell|null){
+        console.log(domain);
+        
+        if(domain?.figure){
+            const cell = document.getElementById(`${domain.row}-${domain.col}`)
+            
+            cell?.classList.add('cell-selected')
+            console.log(cell);
+
+        }
+
+    }
+
+    public clearCellClasses() {
+        const cells = document.querySelectorAll('.cell-available, .cell-canbeeaten, .cell-selected');
+        cells.forEach(cell => {
+            cell.classList.remove('cell-available', 'cell-canbeeaten','cell-selected');
+        });
+    };
+
+    public highlightAvailableCell(domain:Cell, target: Cell) {
+        const cell = document.getElementById(`${target.row}-${target.col}`)
+        if (target.figure == null) {
+            cell?.classList.add('cell-available')
+        }else if(target.figure.color !== domain.figure?.color){
+            cell?.classList.add('cell-canbeeaten')
         }
     }
     private addFigures() {
@@ -74,6 +107,5 @@ export class Board {
         new King(COLORS.WHITE, this.getCell(7, 4));
 
     }
-
 
 }

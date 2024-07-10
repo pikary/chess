@@ -20,7 +20,6 @@ export class Figure{
     id:number
     color:COLORS
 
-
     constructor(color:COLORS,cell:Cell) {
         this.color = color
         this.cell = cell
@@ -28,8 +27,6 @@ export class Figure{
         this.name =FigureNames.FIGURE
         this.id = Math.random()
     }
-
-   
 
     canMove(targetCell:Cell){
         // if(targetCell.figure?.color == this.color){
@@ -53,6 +50,7 @@ export class Figure{
 
     moveFigure(target:Cell){
         this.cell = target
+        this.cell.board.clearCellClasses()
     }
     
 }
